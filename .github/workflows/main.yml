@@ -1,0 +1,11 @@
+name: Remote Dispatch Action Initiator
+on: 
+    release:
+      types: [created]
+jobs:
+  initiator:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch initiating repository event
+        run: |
+          curl -X POST https://api.github.com/repos/selftestdisco/TestRxJS/dispatches
