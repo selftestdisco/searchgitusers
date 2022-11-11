@@ -8,4 +8,4 @@ jobs:
     steps:
       - name: Dispatch initiating repository event
         run: |
-          curl -X POST https://api.github.com/repos/selftestdisco/TestRxJS/dispatches
+          curl -X POST https://api.github.com/repos/selftestdisco/TestRxJS/.github/workflows/main.yml/dispatches
