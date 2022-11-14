@@ -10,5 +10,5 @@ jobs:
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v2.1.0
       with:
-        token: ${{ secrets.MY_TEST }}
+        token: ${{ secrets.MY_ORG }}
         event-type: my-event
