@@ -10,7 +10,7 @@ jobs:
       - name: Trigger Workflow and Wait
         uses: convictional/trigger-workflow-and-wait@v1.6.4
         with:
-            owner: selftestdisco
-            repo: TestRxJS
-            github_token: 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
+            owner: deepakndi
+            repo: selftestdisco/TestRxJS
+            github_token: $
             workflow_file_name: main.yml
