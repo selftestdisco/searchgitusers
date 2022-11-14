@@ -7,10 +7,8 @@ jobs:
   initiator:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Workflow and Wait
-        uses: convictional/trigger-workflow-and-wait@v1.6.4
-        with:
-            owner: deepakndi
-            repo: selftestdisco/TestRxJS
-            github_token: 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
-            workflow_file_name: main.yml
+    - name: Repository Dispatch
+      uses: peter-evans/repository-dispatch@v2.1.0
+      with:
+        token: ${{ secrets.MY_TEST }}
+        event-type: my-event
