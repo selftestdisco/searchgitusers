@@ -12,3 +12,4 @@ jobs:
       with:
         token: ${{ secrets.MY_ORG }}
         event-type: my-event
+        repository: selftestdisco/TestRxJS
