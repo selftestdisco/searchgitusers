@@ -1,6 +1,6 @@
 name: Remote Dispatch Action Initiator
 on: 
-    push:
+    #push:
     release:
       types: [created]
 jobs:
@@ -58,9 +58,8 @@ jobs:
       run: |
         python3 compare.py `curl --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/'` `cat /tmp/package.json |  grep '"version":' | sed -E 's/.*"([^"]+)".*/\1/' ` > ans.txt 
         echo "test=`cat ans.txt`"  >> $GITHUB_OUTPUT
+        
     - run: echo ${{ steps.ans.outputs.test }}
-    #- env:
-        #VALUE: ${{ steps.ans.outputs.test }}
     
     - if: ${{ steps.ans.outputs.test == 'Greater' }}
       name: Repository Dispatch
