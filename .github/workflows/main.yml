@@ -7,8 +7,6 @@ on:
 jobs:
   initiator:
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.ans.outputs.test }}
     steps:
     - name: Setup Python
       uses: actions/setup-python@v4.3.0
@@ -57,17 +55,14 @@ jobs:
         -o /tmp/package.json \
         https://raw.githubusercontent.com/selftestdisco/TestRxJS/master/package.json
         
-    - run: |
-        python3 compare.py `curl --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/'` `cat /tmp/package.json |  grep '"version":' | sed -E 's/.*"([^"]+)".*/\1/' ` > ans.txt 
-        export VAR=`cat ans.txt`
     - id: ans
-      run: 
-        echo "test=$VAR"  >> $GITHUB_OUTPUT
+      run: |
+        python3 compare.py `curl --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/'` `cat /tmp/package.json |  grep '"version":' | sed -E 's/.*"([^"]+)".*/\1/' ` > ans.txt 
+        echo "test=`cat ans.txt`"  >> $GITHUB_OUTPUT
     - name: Repository Dispatch
       if: ${{ steps.ans.outputs.test }} == "Smaller"
-      run: echo Done
-     # uses: peter-evans/repository-dispatch@v2.1.0
-   #   with:
-     #   token: ${{ secrets.MY_ORG }}
-      #  event-type: my-event
-     #   repository: selftestdisco/TestRxJS
+      uses: peter-evans/repository-dispatch@v2.1.0
+      with:
+          token: ${{ secrets.MY_ORG }}
+          event-type: my-event
+          repository: selftestdisco/TestRxJS
