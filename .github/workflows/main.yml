@@ -60,7 +60,9 @@ jobs:
         cat ans.txt
         export VAR=`cat ans.txt`
         echo $VAR
-    #- name: Repository Dispatch
+    - name: Repository Dispatch
+      if: $VAR == "Greater"
+      run: echo Done
      # uses: peter-evans/repository-dispatch@v2.1.0
    #   with:
      #   token: ${{ secrets.MY_ORG }}
