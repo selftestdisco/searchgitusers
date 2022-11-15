@@ -1,6 +1,6 @@
 name: Remote Dispatch Action Initiator
 on: 
-    push:
+    #push:
     release:
       types: [created]
 jobs:
