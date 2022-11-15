@@ -1,6 +1,6 @@
 name: Remote Dispatch Action Initiator
 on: 
-    #push:
+    push:
     release:
       types: [created]
 jobs:
@@ -56,7 +56,12 @@ jobs:
         
     - id: ans
       run: |
-        python3 compare.py `curl --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/'` `cat /tmp/package.json |  grep '"version":' | sed -E 's/.*"([^"]+)".*/\1/' ` > ans.txt 
+        arg1=(curl --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' )
+        cat arg1
+        arg2=(cat /tmp/package.json |  grep '"version":' | sed -E 's/.*"([^"]+)".*/\1/')
+        cat arg2
+        python3 compare.py $arg1 $arg2  > ans.txt
+        cat ans.txt
         echo "test=`cat ans.txt`"  >> $GITHUB_OUTPUT
         
     - run: echo ${{ steps.ans.outputs.test }}
