@@ -61,7 +61,7 @@ jobs:
         export VAR=`cat ans.txt`
         echo $VAR
     - name: Repository Dispatch
-      if: $VAR == "Greater"
+      if: ${{ VAR }} == "Greater"
       run: echo Done
      # uses: peter-evans/repository-dispatch@v2.1.0
    #   with:
