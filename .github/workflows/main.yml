@@ -60,7 +60,7 @@ jobs:
         echo $arg1
         export arg2=`cat /tmp/package.json |  grep '"version":' | sed -E 's/.*"([^"]+)".*/\1/'`
         echo $arg2
-        python3 compare.py $arg1 $arg2  > ans.txt
+        python3 compare.py `echo $arg1` `echo $arg2`  > ans.txt
         cat ans.txt
         echo "test=`cat ans.txt`"  >> $GITHUB_OUTPUT
         
