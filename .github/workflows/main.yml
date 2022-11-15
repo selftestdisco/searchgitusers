@@ -47,7 +47,7 @@ jobs:
         elif ans > 0:
             print ("Smaller")
         else:
-            print ("Smaller")
+            print ("Equal")
         EOF
     - run: |
         curl -H 'Authorization: token ${{ secrets.MY_ORG }}' \
