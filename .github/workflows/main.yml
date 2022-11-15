@@ -70,7 +70,6 @@ jobs:
       name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v2.1.0
       with:
-      
           token: ${{ secrets.MY_ORG }}
           event-type: my-event
           repository: selftestdisco/TestRxJS
