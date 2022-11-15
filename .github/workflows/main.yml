@@ -62,7 +62,7 @@ jobs:
     #- env:
         #VALUE: ${{ steps.ans.outputs.test }}
     
-    - if: ${{ steps.ans.outputs.test != 'Greater' }}
+    - if: ${{ steps.ans.outputs.test == 'Greater' }}
       name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v2.1.0
       with:
