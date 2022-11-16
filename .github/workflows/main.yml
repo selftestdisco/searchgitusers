@@ -2,11 +2,14 @@ name: Remote Dispatch Action Initiator
 on: 
     #push:
     release:
-      types: [created]
+      types: [created,published]
 jobs:
   initiator:
     runs-on: ubuntu-latest
+    env:
+      RELEASE: ${{ github.event.release.name }
     steps:
+    - run: echo "$RELEASE"
     - name: Setup Python
       uses: actions/setup-python@v4.3.0
     - name: compare version
@@ -69,9 +72,9 @@ jobs:
     
     - if: ${{ steps.ans.outputs.test == 'Greater' }}
       name: Repository Dispatch
-      uses: peter-evans/repository-dispatch@v2.1.0
-      with:
-          token: ${{ secrets.MY_ORG }}
-          event-type: my-event
-          repository: selftestdisco/TestRxJS
+      #uses: peter-evans/repository-dispatch@v2.1.0
+      #with:
+          #token: ${{ secrets.MY_ORG }}
+          #event-type: my-event
+          #repository: selftestdisco/TestRxJS
     
