@@ -1,0 +1,12 @@
+name: test
+on:
+  push:
+  
+jobs:
+  testjob:
+    env:
+      releasename: ${{ github.event.release.name }}
+      
+    run:
+    
+      echo $releasename
