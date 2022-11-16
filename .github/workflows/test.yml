@@ -4,9 +4,9 @@ on:
   
 jobs:
   testjob:
+    runs-on: ubuntu-latest  
     env:
       releasename: ${{ github.event.release.name }}
-      
-    run:
-    
-      echo $releasename
+    steps:  
+      - run:
+          echo $releasename
