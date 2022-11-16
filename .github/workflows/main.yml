@@ -1,13 +1,13 @@
 name: Remote Dispatch Action Initiator
 on: 
-    #push:
+    push:
     release:
       types: [published]
 jobs:
   initiator:
     runs-on: ubuntu-latest
     env:
-      RELEASE: ${{ github.event.release.name }
+      RELEASE: ${{ github.event.release.name }}
     steps:
     - run: echo "$RELEASE"
     - name: Setup Python
