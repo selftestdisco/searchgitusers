@@ -1,6 +1,5 @@
 name: test
 on:
-  push:
   release:
     types: [published]
   
@@ -8,7 +7,6 @@ jobs:
   testjob:
     runs-on: ubuntu-latest  
     env:
-      releasename: ${{ github.event.release.name }}
+      RELEASE: ${{ github.event.release.name }}
     steps:  
-      - run:
-          echo $releasename
+      - run: echo "$RELEASE"
