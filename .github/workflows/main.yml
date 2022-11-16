@@ -62,8 +62,8 @@ jobs:
         
         export arg1=`cat /tmp/package.json |  grep '"version":' | sed -E 's/.*"([^"]+)".*/\1/'`
         echo $arg1
-        export arg2="`curl -H 'Authorization: token ${{ secrets.MY_ORG }}' --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' `"
-        echo $arg2
+        #export arg2="`curl -H 'Authorization: token ${{ secrets.MY_ORG }}' --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' `"
+        #echo $arg2
         echo release $RELEASE
         python3 compare.py  $arg1 $RELEASE  > ans.txt
         cat ans.txt
@@ -71,11 +71,11 @@ jobs:
         
     - run: echo ${{ steps.ans.outputs.test }}
     
-    #- if: ${{ steps.ans.outputs.test == 'Greater' }}
-      #name: Repository Dispatch
-      #uses: peter-evans/repository-dispatch@v2.1.0
-      #with:
-          #token: ${{ secrets.MY_ORG }}
-          #event-type: my-event
-          #repository: selftestdisco/TestRxJS
+    - if: ${{ steps.ans.outputs.test == 'Greater' }}
+      name: Repository Dispatch
+      uses: peter-evans/repository-dispatch@v2.1.0
+      with:
+          token: ${{ secrets.MY_ORG }}
+          event-type: my-event
+          repository: selftestdisco/TestRxJS
     
