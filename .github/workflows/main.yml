@@ -65,9 +65,9 @@ jobs:
         #export arg2="`curl -H 'Authorization: token ${{ secrets.MY_ORG }}' --silent "https://api.github.com/repos/selftestdisco/searchgitusers/releases/latest" | grep '"name":' | sed -E 's/.*"([^"]+)".*/\1/' `"
         #echo $arg2
         echo release $RELEASE
-        python3 compare.py  $arg1 $RELEASE  > ans.txt
-        cat ans.txt
-        echo "test=`cat ans.txt`"  >> $GITHUB_OUTPUT
+        #python3 compare.py  $arg1 $RELEASE  > ans.txt
+        #cat ans.txt
+        echo "test=`python3 compare.py  $arg1 $RELEASE`"  >> $GITHUB_OUTPUT
         
     - run: echo ${{ steps.ans.outputs.test }}
     
