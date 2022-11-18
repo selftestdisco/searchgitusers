@@ -2,14 +2,7 @@ name: Remote Dispatch Action Initiator
 on: 
     #push:
     release:
-      types:
-        - published
-        - unpublished
-        - created
-        - edited
-        - deleted
-        - prereleased
-        - released
+      types: [published]
 jobs:
   initiator:
     runs-on: ubuntu-latest
