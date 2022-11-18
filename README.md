@@ -66,3 +66,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Release creation
+
+When a new release is created in this repo, if the release version is greater than that of "version": in https://github.com/selftestdisco/TestRxJS/blob/master/package.json
+then a PR will be created to update the "version": in that file to as same as that of the release version in this repo. 
