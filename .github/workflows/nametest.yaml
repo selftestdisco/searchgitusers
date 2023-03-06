@@ -1,7 +1,26 @@
 name: compile
+run-name: "complie ${{ inputs.customName }} "
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: "The tag/branch targeted for release build, default: develop"
+        type: string
+        required: false
+        default: "develop"
+      deployToDevCluster:
+        description: Deploy this build to the Dev cluster (to the subDomain)
+        type: boolean
+        required: false
+        default: false
+      subDomain:
+        description: "the subdomain for the published 'slot' URL"
+        required: false
+      customName:
+        description: "The Workflow Run name for release build"
+        type: string
+        required: false
   
 jobs:
   compile:
