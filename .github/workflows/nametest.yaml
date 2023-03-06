@@ -7,4 +7,4 @@ jobs:
   compile:
     runs-on: ubuntu-22.04
     steps:
-    - run: ${{ github.workflow }}
+    - run: echo "${{ github.workflow }}"
